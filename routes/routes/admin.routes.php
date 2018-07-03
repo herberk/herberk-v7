@@ -15,7 +15,7 @@ Route::resource('users', 'UsersController', ['parameters' => [
 Route::get('users/delete/{id}', ['as' =>  'users/delete', 'uses' => 'UsersController@destroy']);
 Route::get('users/restore/{id}', ['as' =>  'users/restore', 'uses' => 'UsersController@restore']);
 
-Route::get('usersxls',['as' => 'usersxls', 'uses'=> 'UsersController@aexcel']);
+Route::get('export',['as' => 'export', 'uses'=> 'UsersController@export']);
 Route::get('usernew',['as' => 'usernew', 'uses'=> 'UsersController@newuser']);
 
 Route::group(['middleware' =>'auth'], function(){

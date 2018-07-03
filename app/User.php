@@ -28,7 +28,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    public function profile(){
+
+        public function profile(){
         return $this->hasOne(UserProfile::class)
             ->withDefault([
                 'nickname'  => 'Gest'.rand(100,999)

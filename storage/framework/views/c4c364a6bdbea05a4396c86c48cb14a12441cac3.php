@@ -21,7 +21,7 @@
               <div class="card-body">
                     <div class="row">
                          <div class="col-7">
-                             <a href="<?php echo e(route('usersxls')); ?>" class="btn btn-sm  btn-outline-success"><i class="fas fa-file-excel"></i> Exportar Xls </a>
+                             <a href="<?php echo e(route('export')); ?>" class="btn btn-sm  btn-outline-success"><i class="fas fa-file-excel"></i> Exportar Xls </a>
                              <a href="<?php echo e(url('/usernew')); ?>" class="btn btn-sm  btn-outline-primary"><i class="fas fa-plus-square"></i> Nuevo Usuario</a>
                          </div>
                           <?php echo $__env->make('admin.users.partials.search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

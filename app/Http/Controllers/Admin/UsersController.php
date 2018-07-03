@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests;
+use App\Exports\UsersExport;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\UserProfile;
@@ -75,17 +75,9 @@ class UsersController extends Controller
         return redirect()->route('users.index')->with("restored" , $id );
     }
 
-    public function aexcel(Request $request)
+      function export()
     {
-        $Users = User::filterAndPaginate($request->get('name'), $request->get('type'));
-
-        Excel::create('Listado de Usuario', function ($excel) {
-            $excel->sheet('Usuarios', function ($sheet) {
-                $UserProfile = UserProfile::all();
-                $User = User::all();
-                 $users = user::select('id', 'name', 'email', 'type','active')->get();
-                $sheet->fromArray($User);
-            });
-        })->download('xls');
+        return Excel::download(new UsersExport, 'users.xlsx');
     }
+
 }
