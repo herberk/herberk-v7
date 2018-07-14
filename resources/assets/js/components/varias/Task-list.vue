@@ -1,9 +1,10 @@
 <template>
     <div class="row">
         <div class="col-12">
-           <div class="card">
+            <div class="card">
                 <img src="img/logo.png" alt="Lista de Notasn" width="112" height="26">
                 <h2  class="column text-center"><strong> Notas de:  </strong></h2>
+               
                  <!--<hr>-->
                 <!--Ingreso de nueva nota-->
                 <div class="card-body">
@@ -12,10 +13,10 @@
                             <input type="text"  class="form-control" placeholder="Nueva Nota" v-model="task.body">
                         </div>
                          <div class="col-2" id="date_picker">
-                         <datepicker input-class="input" :bootstrap-styling="true" ></datepicker>
+                         <datepicker input-class="input" :bootstrap-styling="true" language="es" ></datepicker>
                          </div>
                         <div class="col-2">
-                            &nbsp; <a class="btn btn-primary" @click="createTask()"> Agregar Nota</a>
+                            <span class="btn btn-primary" @click="createTask()"><i class="fas fa-tasks"></i> Agregar Nota</span>
                         </div>
                       </div>
                     <!--Seleccionar seccion  // class="nav-item"-->
@@ -23,17 +24,13 @@
                     <ul id="myUl" class="nav nav-tabs justify-content-center">
                         <li :class="{'active':isActive('current')}">
                             <h3><a class="myLi"  href="#" v-on:click.prevent="fetchTaskList()">
-                                    Notas activas  </a></h3>
-
-                        </li>
+                                    Notas activas  </a></h3></li>
                         <li :class="{'active':isActive('archive')}">
                             <h3><a class="myLi" href="#" v-on:click.prevent="fetchTaskList(1)">
-                                &nbsp;&nbsp;  Notas pasiva </a></h3>
-                        </li>
+                                &nbsp;&nbsp;  Notas pasiva </a></h3> </li>
                     </ul>
-
                 </div>
-               <div class="card" v-for="task in list">
+                <div class="card" v-for="task in list">
                     <div class="card-body">
                         <div class="form-row ">
                                 <span class="btn btn-sm btn-light">

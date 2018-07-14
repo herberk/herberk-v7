@@ -18,9 +18,9 @@
   <script>
       // Add active class to the current UL (highlight it)
       var header = document.getElementById("myUl");
-      var btns = header.getElementsByClassName("myLi");
+      var myLi = header.getElementsByClassName("myLi");
       for (var i = 0; i < miLis.length; i++) {
-          btns[i].addEventListener("click", function() {
+          miLi[i].addEventListener("click", function() {
               var current = document.getElementsByClassName("active");
               current[0].className = current[0].className.replace(" active", "");
               this.className += " active";

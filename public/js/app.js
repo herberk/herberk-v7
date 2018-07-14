@@ -48480,9 +48480,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     directives: {
@@ -48640,16 +48637,19 @@ var render = function() {
                 { staticClass: "col-2", attrs: { id: "date_picker" } },
                 [
                   _c("datepicker", {
-                    attrs: { "input-class": "input", "bootstrap-styling": true }
+                    attrs: {
+                      "input-class": "input",
+                      "bootstrap-styling": true,
+                      language: "es"
+                    }
                   })
                 ],
                 1
               ),
               _vm._v(" "),
               _c("div", { staticClass: "col-2" }, [
-                _vm._v("\n                          "),
                 _c(
-                  "a",
+                  "span",
                   {
                     staticClass: "btn btn-primary",
                     on: {
@@ -48658,7 +48658,10 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v(" Agregar Nota")]
+                  [
+                    _c("i", { staticClass: "fas fa-tasks" }),
+                    _vm._v(" Agregar Nota")
+                  ]
                 )
               ])
             ]),
