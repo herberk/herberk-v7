@@ -7,7 +7,7 @@ use App\modal\Tablas\Giros;
 Route::get('giros',['as' => 'giros',
     'uses' => 'TablasController@giros'
 ]);
-Route::get('girosxls', 'TablasController@bexcel');
+Route::get('girosxls', 'TablasController@export');
 
 Route::get('autocomplete/giros',function(){
     $term = Request::get('term');

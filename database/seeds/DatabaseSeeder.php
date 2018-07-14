@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(JuradasTableSeeder::class);
         $this->call(SociosTableSeeder::class);
         $this->call(ContactosTableSeeder::class);
+        $this->call(FilesTableSeeder::class);
        // $this->call(RolesAndPermissionsSeeder::class);
         $this->command->warn('All done = Todo bien :)');
     }

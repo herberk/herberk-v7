@@ -13,7 +13,7 @@ Route::get('empresa/show/{id}','EmpresaController@show')->name('empresashow');
 Route::get('empresa/shownotas/{id}','EmpresaController@shownotas')->name('empresashownotas');
 Route::put('empresa/updatenota/{id}',['as' =>  'empresa/updatenota', 'uses' => 'EmpresaController@updatenota']);
 //Route::get('/empresaQuery','EmpresaController@empresaQuery')->name('empresaQuery');
-Route::get('/empresa/excel','EmpresaController@aexcel')->name('empresaexcel');
+Route::get('/empresa/excel','EmpresaController@export')->name('empresaexcel');
 Route::get('pdfview/{id}/{pd}',['as' => 'pdfview','uses'=>'EmpresaController@pdf',]);
 
 //socios
@@ -26,7 +26,7 @@ Route::get('socio/delete/{id}', ['as' => 'socio/delete', 'uses' => 'SocioControl
 Route::get('socio/restore/{id}', ['as' => 'socio/restore', 'uses' => 'SocioController@restore']);
 Route::get('socio/shownotas/{id}','SocioController@shownotas')->name('socioshownotas');
 Route::put('socio/updatenota/{id}',['as' =>  'socio/updatenota', 'uses' => 'SocioController@updatenota']);
-Route::get('/socio/excel','SocioController@aexcel')->name('socioexcel');
+Route::get('/socio/excel','SocioController@export')->name('socioexcel');
 
 
 

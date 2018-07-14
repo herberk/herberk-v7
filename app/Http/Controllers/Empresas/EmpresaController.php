@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Empresas;
 
-
+use App\Exports\EmpresasExport;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -201,14 +201,10 @@ class EmpresaController extends Controller
         return \Redirect::route( "listempresa" )->with("message" ,'La empresa fue restaurada' );
     }
 
-    public function aexcel()
+    function export()
     {
-        Excel::create('Listado de Empresas', function ($excel) {
-            $excel->sheet('Empresas', function ($sheet) {
-                $empresas = empresa::all();
-                //$users = user::select('id', 'name', 'username', 'email', 'type','active')->get();
-                $sheet->fromArray($empresas);
-            });
-        })->download('xls');
+        return Excel::download(new EmpresasExport, 'empresas.xlsx');
     }
+
+
 }

@@ -69,11 +69,11 @@ class empresa extends Model
             $query->where('type',$type);
         }
     }
- /*  public function getFe_inicioAttribute($value)
-    {
-        return Carbon::parse($value)->format('d-m-Y','11/06/1990');
-
-    }*/
+//     public function getfe_inicioAttribute($fe_inicio)
+//    {
+//        return Carbon::parse($fe_inicio)->format('d-m-Y');
+//
+//    }
     public function getcodpostalAttribute($codpostal)
     {
         return $this->attributes['codpostal'] = number_format($codpostal, 0);
@@ -83,5 +83,8 @@ class empresa extends Model
     {
         return $this->attributes['capital'] =  number_format($capital, 0);
     }
-
+    public function getnotasAttribute($notas)
+    {
+        return $this->attributes['notas'] = strip_tags($notas,"");
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Tablas;
 
+use App\Exports\GirosExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\modal\Tablas\giros;
@@ -77,13 +78,10 @@ class TablasController extends Controller
         return view('tablas.giros',compact( 'giros'));
     }
 
-    public function bexcel(Request $request){
-        Excel::create('Listado de Giros', function ($excel) {
-            $excel->sheet('Giros', function ($sheet) {
-                $giros = giros::select('id', 'codigo', 'name', 'afecto', 'cat_tribut','desgiros_id')->get();
-                $sheet->fromArray($giros);
-            });
-        })->download('xls');
+    function export()
+    {
+        return Excel::download(new GirosExport, 'giros.xlsx');
     }
+
 
 }

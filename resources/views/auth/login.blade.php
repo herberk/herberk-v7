@@ -8,11 +8,10 @@
             <div class="card-body">
                 <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                     {{ csrf_field() }}
-                    <div class="form-group has-danger{{ $errors->has('email') ? ' has-error' : '' }}">
-
+               <div class="form-group has-danger{{ $errors->has('email') ? ' has-error' : '' }}">
                         <label class="sr-only" for="email" class="col-md-4 control-label">E-Mail Address</label>
                         <label for="email">Correo Electronico </label>
-                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                             <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
                         @if ($errors->has('email'))
                             <span class="form-text text-danger">{{ $errors->first('email') }}</span>
                         @endif

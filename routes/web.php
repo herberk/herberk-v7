@@ -28,7 +28,6 @@ Route::get('refresh_captcha', 'ConfigController@refreshCaptcha')->name('refresh_
 
 Route::post('send', ['as' => 'send', 'uses' => 'ConfigController@send'] );
 
-Route::resource('/task', 'TaskController');
 Route::get('/tareas', 'ConfigController@tareas')->name('tareas');
 
 Route::get('autocomplete/users',function(){
@@ -56,4 +55,7 @@ Route::group([ 'namespace' => 'Tablas'], function () {
 });
 Route::group([ 'namespace' => 'Empresas'], function () {
     require __DIR__ . '/routes/empresas.routes.php';
+});
+Route::group([ 'namespace' => 'Varias'], function () {
+    require __DIR__ . '/routes/varias.routes.php';
 });

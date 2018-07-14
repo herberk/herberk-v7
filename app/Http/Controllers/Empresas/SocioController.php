@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Empresas;
 
+use App\Exports\SociosExport;
 use App\Http\Requests\SociosCreateRequest;
 use App\Http\Requests\SociosEditRequest;
 use Illuminate\Http\Request;
@@ -100,15 +101,9 @@ class SocioController extends Controller
         return \Redirect::route( "listasocios" )->with("message" ,'El Socio fue restaurado' );
     }
 
-    public function aexcel()
+    function export()
     {
-        Excel::create('Listado de Socios', function ($excel) {
-            $excel->sheet('socios', function ($sheet) {
-                $socios=socio::all();
-                // $socios=socio::with('empresas')->get();
-                //$users = user::select('id', 'name', 'username', 'email', 'type','active')->get();
-                $sheet->fromArray($socios);
-            });
-        })->download('xls');
+        return Excel::download(new SociosExport, 'socios.xlsx');
     }
+
 }

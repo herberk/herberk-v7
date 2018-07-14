@@ -28,6 +28,10 @@ class socio extends Model
         return $this->belongsTo('App\modal\empresas\empresa','empresa_id');
     }
 
+    public function getnotasAttribute($notas)
+    {
+        return $this->attributes['notas'] = strip_tags($notas,"");
+    }
   /* public function getapopagoAttribute($apopago)
     {
         return $this->attributes['apopago'] = number_format($apopago, 0);

@@ -1,34 +1,32 @@
 <?php
 namespace App\Exports;
 
-use App\User;
+use App\modal\Tablas\giros;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 
-class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
+class GirosExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
 {
     public function collection()
     {
 
-        $users = user::orderBy('name','ASC')
-            ->select('id','nickname','name','email','points','type','active','created_at')
+        $giros = giros::orderBy('name','ASC')
+            ->select('id','codigo','name','afecto','cat_tribut','created_at')
             ->get();
-       return  $users;
+       return  $giros;
     }
 
     public function headings(): array
     {
         return [
             '#',
-            'Nombre Corto',
+            'Codigo',
             'Nombre',
-            'Email',
-            'Puntos',
-            'rol usuario',
-            'Activo',
+            'Afecto',
+            'Categoria',
             'Creado',
 
         ];
@@ -38,7 +36,7 @@ class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize, WithE
         return [
             AfterSheet::class    => function(AfterSheet $event) {
                 $cellRange = 'A1:I1'; // All headers
-                $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setSize(14);
+                $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setSize(12);
 
                 $styleArray = [
                     'font' => [

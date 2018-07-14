@@ -1,44 +1,50 @@
 <?php
+
+
 namespace App\Exports;
 
-use App\User;
+use App\modal\empresas\socio;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 
-class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
+class SociosExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEvents
 {
     public function collection()
     {
 
-        $users = user::orderBy('name','ASC')
-            ->select('id','nickname','name','email','points','type','active','created_at')
+        $socios = socio::orderBy('name','ASC')
+            ->select('id', 'rut', 'name', 'email','fono','rep_legal','porcen','apopago','apopend','aporte','empNamCorto','notas','created_at')
             ->get();
-       return  $users;
+        return  $socios;
     }
 
     public function headings(): array
     {
         return [
             '#',
-            'Nombre Corto',
+            'rut',
             'Nombre',
             'Email',
-            'Puntos',
-            'rol usuario',
-            'Activo',
+            'Telefonos',
+            'Es Representante',
+            'Porcentage',
+            'Aporte Pagado',
+            'Aporte Pendiente',
+            'Total Aporte',
+            'Empresa',
+            'Notas u observaciones',
             'Creado',
-
         ];
     }
     public function registerEvents(): array
     {
         return [
             AfterSheet::class    => function(AfterSheet $event) {
-                $cellRange = 'A1:I1'; // All headers
-                $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setSize(14);
+                $cellRange = 'A1:W1';   // All headers
+                $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setSize(12);
 
                 $styleArray = [
                     'font' => [
@@ -52,11 +58,9 @@ class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize, WithE
                     ],*/
                 ];
 
-              //  $worksheet->getStyle('B2:G8')->applyFromArray($styleArray);
+                //  $worksheet->getStyle('B2:G8')->applyFromArray($styleArray);
 
             },
         ];
     }
-
 }
-
